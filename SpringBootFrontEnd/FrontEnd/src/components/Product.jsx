@@ -1,10 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import AppContext from "../Context/Context";
 import axios from "../axios";
 import UpdateProduct from "./UpdateProduct";
-const Product = () => {
+
+const Product = (props) => {
+  const { category } = props;
   const { id } = useParams();
   const { data, addToCart, removeFromCart, cart, refreshData } =
     useContext(AppContext);
@@ -16,9 +18,11 @@ const Product = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/product/${id}`
+          `/product/${category}/${id}`
         );
         setProduct(response.data);
+        // console.log(response.data);
+        
         if (response.data.imageName) {
           fetchImage();
         }
@@ -29,7 +33,7 @@ const Product = () => {
 
     const fetchImage = async () => {
       const response = await axios.get(
-        `http://localhost:8080/api/product/${id}/image`,
+        `/product/${id}/image`,
         { responseType: "blob" }
       );
       setImageUrl(URL.createObjectURL(response.data));
@@ -40,7 +44,7 @@ const Product = () => {
 
   const deleteProduct = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/product/${id}`);
+      await axios.delete(`/product/${id}`);
       removeFromCart(id);
       console.log("Product deleted successfully");
       alert("Product deleted successfully");
@@ -66,9 +70,10 @@ const Product = () => {
       </h2>
     );
   }
+  
   return (
     <>
-      <div className="containers" style={{ display: "flex" }}>
+      <div className="containers" style={{ display: "flex" ,maxHeight: "70vh"}}>
         <img
           className="left-column-img"
           src={imageUrl}
@@ -82,11 +87,11 @@ const Product = () => {
             <span style={{ fontSize: "1.2rem", fontWeight: 'lighter' }}>
               {product.category}
             </span>
-            <p className="release-date" style={{ marginBottom: "2rem" }}>
+            <div className="release-date" style={{ marginBottom: "2rem" }}>
               
               <h6>Listed : <span> <i> {new Date(product.releaseDate).toLocaleDateString()}</i></span></h6>
               {/* <i> {new Date(product.releaseDate).toLocaleDateString()}</i> */}
-            </p>
+            </div>
             </div>
             
            
@@ -130,7 +135,7 @@ const Product = () => {
           
           </div>
           <div className="update-button" style={{ display: "flex", gap: "1rem" }}>
-            <button
+            {/* <button
               className="btn btn-primary"
               type="button"
               onClick={handleEditClick}
@@ -145,9 +150,9 @@ const Product = () => {
               }}
             >
               Update
-            </button>
+            </button> */}
             {/* <UpdateProduct product={product} onUpdate={handleUpdate} /> */}
-            <button
+            {/* <button
               className="btn btn-primary"
               type="button"
               onClick={deleteProduct}
@@ -162,7 +167,7 @@ const Product = () => {
               }}
             >
               Delete
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

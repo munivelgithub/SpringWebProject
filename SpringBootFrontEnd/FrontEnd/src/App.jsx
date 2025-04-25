@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
+import Productlist from "./components/Productlist";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./Context/Context";
 import UpdateProduct from "./components/UpdateProduct";
@@ -40,7 +41,7 @@ function App() {
     <AppProvider>
       <BrowserRouter>
         <Navbar onSelectCategory={handleCategorySelect}
-         />
+        />
         <Routes>
           <Route
             path="/"
@@ -50,8 +51,10 @@ function App() {
             }
           />
           <Route path="/add_product" element={<AddProduct />} />
-          <Route path="/product" element={<Product  />} />
-          <Route path="product/:id" element={<Product  />} />
+          <Route path="/productlisting/:id" element={<Productlist />} />
+          <Route path="product/Mobile/:id" element={<Product category="Mobile"/>} />
+          <Route path="product/Laptop/:id" element={<Product category="Laptop"/>} />
+          <Route path="product/Electronic/:id" element={<Product category="Electronic"/>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/update/:id" element={<UpdateProduct />} />
         </Routes>

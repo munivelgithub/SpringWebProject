@@ -14,8 +14,8 @@ const UpdateProduct = () => {
     price: "",
     category: "",
     releaseDate: "",
-    productAvailable: false,
-    stockQuantity: "",
+    available: false,
+    quantity: "",
   });
 
   useEffect(() => {
@@ -63,8 +63,7 @@ const UpdateProduct = () => {
       "product",
       new Blob([JSON.stringify(updateProduct)], { type: "application/json" })
     );
-  
-
+    
   console.log("formData : ", updatedProduct)
     axios
       .put(`http://localhost:8080/api/product/${id}`, updatedProduct, {
@@ -221,11 +220,11 @@ const UpdateProduct = () => {
               <input
                 className="form-check-input"
                 type="checkbox"
-                name="productAvailable"
+                name="available"
                 id="gridCheck"
-                checked={updateProduct.productAvailable}
+                checked={updateProduct.available}
                 onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, productAvailable: e.target.checked })
+                  setUpdateProduct({ ...updateProduct, available: e.target.checked })
                 }
               />
               <label className="form-check-label">Product Available</label>

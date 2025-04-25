@@ -110,7 +110,7 @@ console.log(products);
                 key={id}
               >
                 <Link
-                  to={`/product/${id}`}
+                  to={`/productlisting/${id}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <img

@@ -50,8 +50,8 @@ export const AppProvider = ({ children }) => {
     try {
       const response = await axios.get("/products");
       
-      setData(response.data);
       // console.log("response",response.data);
+      setData(response.data);
       
     } catch (error) {
       setIsError(error.message);
