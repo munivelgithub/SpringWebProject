@@ -1,5 +1,6 @@
 package com.Munivel.SpringBoot.repo;
 
+import com.Munivel.SpringBoot.Model.Laptopmodel;
 import com.Munivel.SpringBoot.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,6 @@ public interface ProductInterface extends JpaRepository<Product,Integer> {
 
     //lower is an inbuild method
   List<Product> searchProduct(String keyword);
+
+
 }
