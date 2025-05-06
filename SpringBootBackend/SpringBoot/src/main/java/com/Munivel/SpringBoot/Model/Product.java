@@ -39,7 +39,7 @@ public class Product {
 //    // it is an simple way
 //    // when ever you use an array  to store in the database should use an large object
     @Lob
-   // @Column(columnDefinition = "LONGBLOB")
+   @Column(columnDefinition = "LONGBLOB")
     private byte[] imageDate;
 
 }

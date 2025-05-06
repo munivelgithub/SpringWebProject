@@ -124,10 +124,6 @@ public class ProductController {// with the help of hte responentity we can also
     }
 
 
-//    @GetMapping("/api/product_list/1")
-//    public ResponseEntity<List<SamsungModel>> getallSamsumgModel(){
-//        return new ResponseEntity<>(service.getSamsungProducts(),HttpStatus.OK);
-//    }
     @GetMapping("/product_list/{id}")
     public ResponseEntity<?> getProductss(@PathVariable int id){
         switch (id){
@@ -135,17 +131,7 @@ public class ProductController {// with the help of hte responentity we can also
                 return new ResponseEntity<>(service.getSamsungProducts(),HttpStatus.OK);
             case 2:
                 return new ResponseEntity<>(service.getLaptopProducts(),HttpStatus.OK);
-            case 3:
-                return new ResponseEntity<>(service.getElectronicProducts(),HttpStatus.OK);
         }
-
-//        SamsungModel products = service.getSamsungModelByById(id);
-//
-//        if(products != null)
-//            return new ResponseEntity<>(products, HttpStatus.OK);
-//        else
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            ;
         return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
@@ -158,18 +144,6 @@ public class ProductController {// with the help of hte responentity we can also
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-@GetMapping("/product/Electronic/{id}")
-  public ResponseEntity<Electronic> getElectronicProduct(@PathVariable int id){
-        Electronic electronic=service.getElectonicModelByById(id);
-        if(electronic !=null){
-            return new ResponseEntity<>(electronic,HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-  }
-
-
-
 
     @GetMapping("/product/Laptop/{id}")
     public ResponseEntity<Laptopmodel> getProducts(@PathVariable int id){
@@ -204,80 +178,43 @@ public ResponseEntity<byte[]> getProductImage(@PathVariable int id) {
     }
 }
 
-//    @GetMapping("/product/{productId}/image")
-//    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId){
-//        Product product = service.getProductById(productId);
-//        byte[] imageFile = product.getImageDate();
-//
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.valueOf(product.getImageType()))
-//                .body(imageFile);
-//
-//    }
-
-    @CrossOrigin(origins = "http://localhost:5173") // ✅ allow React frontend
     @GetMapping("/product/{productId}/image")
-    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId) {
+    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId){
+
         Product product = service.getProductById(productId);
-
-        if (product == null) {
-            return ResponseEntity.notFound().build(); // 404 if not found
-        }
-
         byte[] imageFile = product.getImageDate();
-        if (imageFile == null || imageFile.length == 0) {
-            return ResponseEntity.noContent().build(); // 204 if no image
-        }
-
-        MediaType mediaType;
-        try {
-            mediaType = MediaType.valueOf(product.getImageType());
-        } catch (Exception e) {
-            mediaType = MediaType.APPLICATION_OCTET_STREAM; // fallback
-        }
 
         return ResponseEntity.ok()
-                .contentType(mediaType)
+                .contentType(MediaType.valueOf(product.getImageType()))
                 .body(imageFile);
+
     }
+
+
+
+
 //
-//    @PutMapping("/product/{id}")
-//    public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product,
-//                                                @RequestPart MultipartFile imageFile){
-//        Product product1 = null;
-//        try {
-//            product1 = service.updateProduct(id, product, imageFile);
-//        } catch (IOException e) {
-//            return new ResponseEntity<>("Failed to update", HttpStatus.BAD_REQUEST);
+//    @DeleteMapping("/product/{id}")
+//    public ResponseEntity<String> deleteProduct(@PathVariable int id){
+//        Product product = service.getProductById(id);
+//        if(product != null) {
+//            service.deleteProduct(id);
+//            return new ResponseEntity<>("Deleted", HttpStatus.OK);
 //        }
-//        if(product1 != null)
-//            return new ResponseEntity<>("Updated", HttpStatus.OK);
 //        else
-//            return new ResponseEntity<>("Failed to update", HttpStatus.BAD_REQUEST);
+//            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+//
 //    }
 
 
-    @DeleteMapping("/product/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id){
-        Product product = service.getProductById(id);
-        if(product != null) {
-            service.deleteProduct(id);
-            return new ResponseEntity<>("Deleted", HttpStatus.OK);
-        }
-        else
-            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
-
-    }
 
 
-
-
-    @GetMapping("/products/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
-        List<Product> products = service.searchProducts(keyword);
-        System.out.println("searching with " + keyword);
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
+//    @GetMapping("/products/search")
+//    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
+//        List<Product> products = service.searchProducts(keyword);
+//        System.out.println("searching with " + keyword);
+//        return new ResponseEntity<>(products, HttpStatus.OK);
+//    }
 
 
 }

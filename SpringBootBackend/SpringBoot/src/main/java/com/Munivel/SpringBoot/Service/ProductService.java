@@ -4,7 +4,6 @@ import com.Munivel.SpringBoot.Model.Electronic;
 import com.Munivel.SpringBoot.Model.Laptopmodel;
 import com.Munivel.SpringBoot.Model.Product;
 import com.Munivel.SpringBoot.Model.SamsungModel;
-import com.Munivel.SpringBoot.repo.ElectronicInterface;
 import com.Munivel.SpringBoot.repo.Laptop;
 import com.Munivel.SpringBoot.repo.ProductInterface;
 import com.Munivel.SpringBoot.repo.SamsungModelInterface;
@@ -68,8 +67,7 @@ private Laptop laptop;
     private ProductInterface repo;
     @Autowired
     private SamsungModelInterface samsungModelInterface;
-    @Autowired
-    private ElectronicInterface electronicInterface;
+
 
     public List<Product> getAllProducts() {
         return repo.findAll();
@@ -92,12 +90,12 @@ private Laptop laptop;
     }
 
 
-//    public Product updateProduct(int id, Product product, MultipartFile imageFile) throws IOException {
-//        product.setImageDate(imageFile.getBytes());
-//        product.setImageName(imageFile.getOriginalFilename());
-//        product.setImageType(imageFile.getContentType());
-//        return repo.save(product);
-//    }
+    public Product updateProduct(int id, Product product, MultipartFile imageFile) throws IOException {
+        product.setImageDate(imageFile.getBytes());
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        return repo.save(product);
+    }
 
     public void deleteProduct(int id) {
         repo.deleteById(id);
@@ -108,10 +106,6 @@ private Laptop laptop;
     public List<SamsungModel> getSamsungProducts() {
           return samsungModelInterface.findAll();
     }
-    public List<Electronic> getElectronicProducts(){
-        return electronicInterface.findAll();
-    }
-
 
     public List<Laptopmodel> getLaptopProducts(){
         return laptop.findAll();
@@ -127,7 +121,4 @@ private Laptop laptop;
     }
 
 
-    public Electronic getElectonicModelByById(int id) {
-        return electronicInterface.findById(id).orElse(null);
-    }
 }
