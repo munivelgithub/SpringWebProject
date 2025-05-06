@@ -122,11 +122,11 @@ const AddProduct = () => {
             >
               <option value="">Select category</option>
               <option value="Laptop">Laptop</option>
-              <option value="Headphone">Headphone</option>
+              {/* <option value="Headphone">Headphone</option> */}
               <option value="Mobile">Mobile</option>
-              <option value="Electronics">Electronics</option>
+              {/* <option value="Electronics">Electronics</option>
               <option value="Toys">Toys</option>
-              <option value="Fashion">Fashion</option>
+              <option value="Fashion">Fashion</option> */}
             </select>
           </div>
 

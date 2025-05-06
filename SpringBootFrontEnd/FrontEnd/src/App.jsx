@@ -52,9 +52,9 @@ function App() {
           />
           <Route path="/add_product" element={<AddProduct />} />
           <Route path="/productlisting/:id" element={<Productlist />} />
-          <Route path="product/Mobile/:id" element={<Product category="Mobile"/>} />
-          <Route path="product/Laptop/:id" element={<Product category="Laptop"/>} />
-          <Route path="product/Electronic/:id" element={<Product category="Electronic"/>} />
+          <Route path="product/Mobile/:id" element={<Product category="Mobile" />} />
+          <Route path="product/Laptop/:id" element={<Product category="Laptop" />} />
+
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/update/:id" element={<UpdateProduct />} />
         </Routes>

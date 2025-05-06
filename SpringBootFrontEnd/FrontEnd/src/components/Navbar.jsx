@@ -98,7 +98,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
     "Laptop",
     // "Headphone",
     "Mobile",
-    "Electronic",
+    // "Electronic",
     // "Toys",
     // "Fashion",
   ];
