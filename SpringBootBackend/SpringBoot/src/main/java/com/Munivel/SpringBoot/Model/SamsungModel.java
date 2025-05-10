@@ -1,5 +1,6 @@
 package com.Munivel.SpringBoot.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
@@ -28,5 +29,6 @@ public class SamsungModel{
     private  String imageType;
 
     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] imageDate;
 }
