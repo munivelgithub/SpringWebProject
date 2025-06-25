@@ -33,3 +33,4 @@ public class Laptopmodel {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imageDate;
 }
+

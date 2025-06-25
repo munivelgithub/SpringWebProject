@@ -16,10 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 @RestController
 @CrossOrigin
-
 @RequestMapping("/api")
 public class ProductController {// with the help of hte responentity we can also send the status
-
     @Autowired
     private ProductService service;
 
@@ -28,8 +26,6 @@ public class ProductController {// with the help of hte responentity we can also
     public ResponseEntity<List<Product>> getAllProducts(){
         return new ResponseEntity<>(service.getAllProducts(), HttpStatus.OK);
     }
-
-
     @GetMapping("/product_list/{id}")
     public ResponseEntity<?> getProductss(@PathVariable int id){
         switch (id){
@@ -44,7 +40,6 @@ public class ProductController {// with the help of hte responentity we can also
     @GetMapping("/product/Mobile/{id}")
     public ResponseEntity<SamsungModel> getProduct(@PathVariable int id){
       SamsungModel samsungModel=service.getSamsungModelByById(id);
-
         if(samsungModel != null)
             return new ResponseEntity<>(samsungModel, HttpStatus.OK);
         else
@@ -71,8 +66,6 @@ public class ProductController {// with the help of hte responentity we can also
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
     @GetMapping("/product/{productId}/image")
     public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId){
 
@@ -82,9 +75,7 @@ public class ProductController {// with the help of hte responentity we can also
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf(product.getImageType()))
                 .body(imageFile);
-
     }
-
     @GetMapping("/products/search")
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
         List<Product> products = service.searchProducts(keyword);

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<!--      <bean id="dev" class="com.MyProject.Dev">-->
+<!--&lt;!&ndash;          <property name="age" value="19"/>&ndash;&gt;-->
+<!--&lt;!&ndash;          <property name="name" value="munivel"/>      this propeties are used for the setter injection-->
+<!--&ndash;&gt;-->
+<!--&lt;!&ndash;          constructor injection&ndash;&gt;-->
+<!--&lt;!&ndash;          <constructor-arg value="14" />  in this we are not using an name because if the construct have hte one para-->
+<!--&ndash;&gt;-->
+<!--&lt;!&ndash;          two parameters need to use an index it is all for the simple variable&ndash;&gt;-->
+<!--          <constructor-arg index="1" value="12" />-->
+<!--          <constructor-arg index="0" value="Munivel" />-->
+<!--&lt;!&ndash;            <property name="laptop" ref="lap"  />&ndash;&gt;-->
+<!--&lt;!&ndash;          you know very well if we use the property it is an setter constructor&ndash;&gt;-->
+<!--&lt;!&ndash;          <constructor-arg index="0" ref="lap"/>&ndash;&gt;-->
+<!--&lt;!&ndash;          here  laptop object that is created on ioc into the refrence present in the dev clas &ndash;&gt;-->
+<!--      </bean>-->
+
+<!--    <bean id="lap" class="com.MyProject.Laptop">-->
+<!--    </bean>-->
+<!--    using autowire=byname is makeing an spring to autowire the class -->
+<bean   class="com.MyProject.Dev" name="dev" autowire="byType"><!--    if you search with the name it will search only the name Computer com is an name it will search any id names is com
+   by type it will search the type of the interface computer-->
+  <property name="age" value="54" />
+    <property name="name" value="munivel"  />
+<!--<constructor-arg index="0" value="12" />-->
+<!--    <constructor-arg index="1" value="munivel" />  it is everything for the normal variables-->
+<!-- how to autowire the automaticall need to say the spring autowiutowire byname-->
+<!--    <property name="computer" ref="c"/> &lt;!&ndash; here basically that we are manually autowirin now the two classed where implements the interface &ndash;&gt;-->
+
+
+</bean>
+    <bean id="computer" primary="false" class="com.MyProject.Laptop">
+<!--    <property name="hellocoder" ref="c"/> primary helps to make an unique-->
+    </bean>
+
+
+    <bean id="c" primary="true" class="com.MyProject.Hellocoder">
+    </bean>
+
+</beans>

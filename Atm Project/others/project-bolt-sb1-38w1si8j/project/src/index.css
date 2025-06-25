@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --atm-primary: #1a1a1a;
+  --atm-secondary: #333;
+  --atm-screen: #000;
+  --atm-text: #33ff33;
+}
+
+body {
+  @apply bg-gray-900 min-h-screen flex items-center justify-center p-4;
+}
+
+.atm-container {
+  @apply w-full max-w-3xl mx-auto;
+}
+
+.atm-body {
+  @apply bg-gradient-to-b from-gray-700 to-gray-800 p-8 rounded-3xl shadow-2xl border-t-8 border-gray-600;
+}
+
+.atm-screen {
+  @apply bg-black mb-8 p-6 rounded-lg border-8 border-gray-700 shadow-inner;
+  min-height: 300px;
+}
+
+.screen-inner {
+  @apply text-green-500 font-mono;
+}
+
+.screen-content {
+  @apply flex flex-col items-center justify-center min-h-[240px];
+}
+
+.pin-display {
+  @apply text-4xl tracking-widest;
+}
+
+.atm-keypad {
+  @apply grid gap-6 mb-8;
+}
+
+.number-pad {
+  @apply grid grid-cols-3 gap-4 mb-4;
+}
+
+.keypad-btn {
+  @apply bg-gradient-to-b from-gray-800 to-gray-900 text-white py-4 rounded-lg 
+         shadow-lg border border-gray-700 text-2xl font-bold
+         hover:from-gray-700 hover:to-gray-800 active:transform active:scale-95;
+}
+
+.function-keys {
+  @apply grid grid-cols-3 gap-4;
+}
+
+.function-btn {
+  @apply py-3 px-4 rounded-lg text-sm font-bold shadow-lg border border-gray-700
+         active:transform active:scale-95;
+}
+
+.cancel {
+  @apply bg-red-600 hover:bg-red-700 text-white;
+}
+
+.clear {
+  @apply bg-yellow-600 hover:bg-yellow-700 text-white;
+}
+
+.enter {
+  @apply bg-green-600 hover:bg-green-700 text-white;
+}
+
+.atm-slots {
+  @apply grid grid-cols-3 gap-4;
+}
+
+.card-slot, .cash-slot, .receipt-slot {
+  @apply bg-gray-900 p-4 rounded-lg text-center border-2 border-gray-700;
+}
+
+.slot-label {
+  @apply text-gray-400 text-sm font-medium;
+}
+
+.menu-btn {
+  @apply bg-gray-800 text-green-500 p-4 rounded-lg flex flex-col items-center justify-center
+         hover:bg-gray-700 transition-colors duration-200;
+}
+
+.loading-spinner {
+  @apply w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin;
+}
+
+/* CRT Screen Effect */
+.screen-inner::before {
+  content: "";
+  @apply absolute inset-0 pointer-events-none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Screen Glare Effect */
+.atm-screen::after {
+  content: "";
+  @apply absolute inset-0 pointer-events-none opacity-20;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 70%
+  );
+}

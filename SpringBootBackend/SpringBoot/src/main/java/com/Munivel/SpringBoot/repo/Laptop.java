@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 
 public interface Laptop extends JpaRepository<Laptopmodel,Integer> {
 }
+
